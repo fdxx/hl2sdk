@@ -607,13 +607,20 @@ template<> FORCEINLINE QAngleByValue Lerp<QAngleByValue>( float flPercent, const
 
 
 // Swap two of anything.
-template <class T> 
-FORCEINLINE void V_swap( T& x, T& y )
-{
-	T temp = x;
-	x = y;
-	y = temp;
-}
+// template <class T> 
+// FORCEINLINE void V_swap( T& x, T& y )
+// {
+// 	T temp = x;
+// 	x = y;
+// 	y = temp;
+// }
+
+#define V_swap(x, y) do {	\
+	auto _tmp_ = (x);		\
+	(x) = (y);				\
+	(y) = _tmp_;			\
+} while (0)
+
 
 template <class T> FORCEINLINE T AVG(T a, T b)
 {
