@@ -510,12 +510,14 @@ public:
 	{
 		switch ( notification.type )
 		{
-		case DC_AGE_DISCARD:
-		case DC_FLUSH_DISCARD:
-		case DC_REMOVED:
-			STORAGE_TYPE *p = (STORAGE_TYPE *)notification.clientId;
-			p->DestroyResource();
-			return true;
+			case DC_AGE_DISCARD:
+			case DC_FLUSH_DISCARD:
+			case DC_REMOVED: {
+				STORAGE_TYPE *p = (STORAGE_TYPE *)notification.clientId;
+				p->DestroyResource();
+				return true;
+			}
+			default: break;
 		}
 
 		return CDefaultDataCacheClient::HandleCacheNotification( notification );
